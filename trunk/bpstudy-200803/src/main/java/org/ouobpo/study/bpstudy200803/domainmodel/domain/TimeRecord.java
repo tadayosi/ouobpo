@@ -6,13 +6,12 @@ import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Id;
 
 /**
- * 手当
+ * 勤怠実績
  */
 @Bean
-public class Benefit {
+public class TimeRecord {
 
-  private Long   fId;
-  private String fEmployeeId;
+  private Long fId;
 
   public String toString() {
     return ToStringBuilder.reflectionToString(
@@ -31,14 +30,6 @@ public class Benefit {
 
   public void setId(Long id) {
     fId = id;
-  }
-
-  public String getEmployeeId() {
-    return fEmployeeId;
-  }
-
-  public void setEmployeeId(String employeeId) {
-    fEmployeeId = employeeId;
   }
 
 }

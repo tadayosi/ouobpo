@@ -4,5 +4,5 @@
 <components>
 	<include path="convention.dicon"/>
 	<include path="aop.dicon"/>
-	<include path="dao.dicon"/>
+	<include path="decamelize-dao.dicon"/>
 </components>

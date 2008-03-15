@@ -4,9 +4,9 @@
 <components>
 	<component class="org.seasar.framework.convention.impl.NamingConventionImpl">
 		<initMethod name="addRootPackageName">
-			<arg>"org.ouobpo.study.bpstudy200803.domainmodel"</arg>
-		</initMethod>
-		<initMethod name="addRootPackageName">
+			<!-- Domain Model version -->
+			<!-- <arg>"org.ouobpo.study.bpstudy200803.domainmodel"</arg> -->
+			<!-- Transaction Script version -->
 			<arg>"org.ouobpo.study.bpstudy200803.txscript"</arg>
 		</initMethod>
 	</component>
