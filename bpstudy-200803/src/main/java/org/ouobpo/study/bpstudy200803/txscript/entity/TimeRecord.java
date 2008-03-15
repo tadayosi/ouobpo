@@ -7,21 +7,18 @@ import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 
 /**
- * 給与明細
+ * 勤怠実績
  */
 @Bean
-public class PaySlip {
+public class TimeRecord {
 
   private Integer id;
   private Integer employeeId;
   private Integer targetYear;
   private Integer targetMonth;
-  private Integer baseSalary;
-  private Integer overtimeAllowance;
-  private Integer rentAllowance;
-  private Integer totalAmount;
+  private Integer overtimeHours;
 
-  public PaySlip() {}
+  public TimeRecord() {}
 
   public String toString() {
     return ToStringBuilder.reflectionToString(
@@ -66,36 +63,12 @@ public class PaySlip {
     this.targetMonth = targetMonth;
   }
 
-  public Integer getBaseSalary() {
-    return baseSalary;
+  public Integer getOvertimeHours() {
+    return overtimeHours;
   }
 
-  public void setBaseSalary(Integer baseSalary) {
-    this.baseSalary = baseSalary;
-  }
-
-  public Integer getOvertimeAllowance() {
-    return overtimeAllowance;
-  }
-
-  public void setOvertimeAllowance(Integer overtimeAllowance) {
-    this.overtimeAllowance = overtimeAllowance;
-  }
-
-  public Integer getRentAllowance() {
-    return rentAllowance;
-  }
-
-  public void setRentAllowance(Integer rentAllowance) {
-    this.rentAllowance = rentAllowance;
-  }
-
-  public Integer getTotalAmount() {
-    return totalAmount;
-  }
-
-  public void setTotalAmount(Integer totalAmount) {
-    this.totalAmount = totalAmount;
+  public void setOvertimeHours(Integer overtimeHours) {
+    this.overtimeHours = overtimeHours;
   }
 
 }
