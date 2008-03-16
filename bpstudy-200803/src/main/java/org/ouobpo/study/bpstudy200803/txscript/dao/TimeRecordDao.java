@@ -17,10 +17,10 @@ public interface TimeRecordDao {
 
   public List<TimeRecord> selectAll();
 
-  @Arguments("ID")
+  @Arguments("id")
   public TimeRecord selectById(Integer id);
 
-  @Arguments( {"employeeId", "targetYear", "targetMonth"})
+  @Arguments( {"employee_id", "target_year", "target_month"})
   public TimeRecord selectByEmployeeIdAndYearAndMonth(
       Integer employeeId,
       int targetYear,

@@ -72,7 +72,7 @@ public class Employee {
     this.rank = rank;
   }
 
-  public Boolean getRentAllowance() {
+  public Boolean isRentAllowance() {
     return rentAllowance;
   }
 

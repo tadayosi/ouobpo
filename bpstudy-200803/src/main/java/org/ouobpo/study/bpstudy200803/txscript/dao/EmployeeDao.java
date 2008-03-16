@@ -17,7 +17,7 @@ public interface EmployeeDao {
 
   public List<Employee> selectAll();
 
-  @Arguments("EMPLOYEE_ID")
+  @Arguments("employee_id")
   public Employee selectById(Integer employeeId);
 
 }
