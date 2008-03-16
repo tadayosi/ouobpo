@@ -13,9 +13,12 @@ import org.ouobpo.study.bpstudy200803.txscript.service.PayrollService;
 
 public class PayrollServiceImpl implements PayrollService {
 
-  private EmployeeDao   fEmployeeDao;  // 従業員DAO
-  private TimeRecordDao fTimeRecordDao; // 勤怠実績DAO
-  private PaySlipDao    fPaySlipDao;   // 給与明細DAO
+  private static final int OVERTIME_ALLOWANCE_HOURLY_PAY = 2000;
+  private static final int RENT_ALLOWANCE_MAX            = 50000;
+
+  private EmployeeDao      fEmployeeDao;                         // 従業員DAO
+  private TimeRecordDao    fTimeRecordDao;                       // 勤怠実績DAO
+  private PaySlipDao       fPaySlipDao;                          // 給与明細DAO
 
   /**
    * 全従業員取得
@@ -44,13 +47,17 @@ public class PayrollServiceImpl implements PayrollService {
         rentAllowance);
   }
 
+  /**
+   * 基本給
+   * 基本給は、職種とランクから決まる。
+   */
   private int calculateBaseSalary(Employee employee) {
     String jobType = employee.getJobType();
-    int rank = employee.getRank();
+    Integer rank = employee.getRank();
     if (Employee.JOB_TYPE_SALES.equals(jobType)) {
 
       // 営業職の給料体系
-      if (Employee.RANK_JUNIOR.equals(rank)) {
+      if (Employee.RANK_JUNIOR == rank) {
         return 220000;
       } else if (Employee.RANK_MIDDLE == rank) {
         return 320000;
@@ -89,7 +96,7 @@ public class PayrollServiceImpl implements PayrollService {
         year,
         month);
     // 時間外勤務の実績から、時間外手当額を算出
-    return timeRecord.getOvertimeHours() * 2000;
+    return timeRecord.getOvertimeHours() * OVERTIME_ALLOWANCE_HOURLY_PAY;
   }
 
   /**
@@ -101,7 +108,7 @@ public class PayrollServiceImpl implements PayrollService {
 
       // 手当対象
       int amount = employee.getRent() / 2;
-      return Math.min(amount, 50000);
+      return Math.min(amount, RENT_ALLOWANCE_MAX);
 
     } else {
 

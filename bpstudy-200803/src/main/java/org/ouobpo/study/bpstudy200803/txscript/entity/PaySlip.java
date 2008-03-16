@@ -7,7 +7,7 @@ import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 
 /**
- * 給与明細
+ * 給与明細（トランザクションスクリプト）
  */
 @Bean
 public class PaySlip {

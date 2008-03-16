@@ -7,7 +7,7 @@ import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 
 /**
- * 勤怠実績
+ * 勤怠実績（トランザクションスクリプト）
  */
 @Bean
 public class TimeRecord {

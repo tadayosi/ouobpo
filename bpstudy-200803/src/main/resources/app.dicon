@@ -5,4 +5,11 @@
 	<include path="convention.dicon"/>
 	<include path="aop.dicon"/>
 	<include path="decamelize-dao.dicon"/>
+	
+	<!-- ドメインモデル用DAOセッタインターセプタ向けの設定 -->
+	<component name="daoSetterInterceptor"
+		class="org.ouobpo.study.bpstudy200803.domainmodel.interceptor.DaoSetterInterceptor"/>
+	<component
+		class="org.ouobpo.study.bpstudy200803.domainmodel.domain.Employee"
+		instance="outer" />
 </components>
