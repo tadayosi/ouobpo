@@ -7,25 +7,25 @@ import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 
 /**
- * 従業員
+ * 従業員（トランザクションスクリプト）
  */
 @Bean
 public class Employee {
 
-  public static final String  JOB_TYPE_SALES = "営業";
-  public static final String  JOB_TYPE_SE    = "SE";
-  public static final String  JOB_TYPE_STAFF = "事務";
+  public static final String JOB_TYPE_SALES = "営業";
+  public static final String JOB_TYPE_SE    = "SE";
+  public static final String JOB_TYPE_STAFF = "事務";
 
-  public static final Integer RANK_JUNIOR    = 1;
-  public static final Integer RANK_MIDDLE    = 2;
-  public static final Integer RANK_SENIOR    = 3;
+  public static final int    RANK_JUNIOR    = 1;
+  public static final int    RANK_MIDDLE    = 2;
+  public static final int    RANK_SENIOR    = 3;
 
-  private Integer             employeeId;
-  private String              name;
-  private String              jobType;
-  private Integer             rank;
-  private Boolean             rentAllowance;
-  private Integer             rent;
+  private Integer            employeeId;
+  private String             name;
+  private String             jobType;
+  private Integer            rank;
+  private Boolean            rentAllowance;
+  private Integer            rent;
 
   public Employee() {}
 
@@ -36,7 +36,7 @@ public class Employee {
   }
 
   //----------------------------------------------------------------------------
-  // Setter/Getter
+  // Getter/Setter
   //----------------------------------------------------------------------------
 
   @Id(value = IdType.IDENTITY)
