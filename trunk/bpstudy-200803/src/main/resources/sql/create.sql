@@ -1,6 +1,6 @@
-drop table employee if exists;
-drop table time_record if exists;
 drop table pay_slip if exists;
+drop table time_record if exists;
+drop table employee if exists;
 
 create table employee (
 	employee_id    identity,
@@ -32,4 +32,30 @@ create table pay_slip (
 	total_amount       int not null,
 	unique (employee_id, target_year, target_month),
 	foreign key (employee_id) references employee (employee_id)
+);
+
+insert into employee (
+	name,
+	job_type,
+	rank,
+	rent_allowance,
+	rent
+) values (
+	'Taro Yamada',
+	'SE',
+	2,
+	true,
+	80000
+);
+
+insert into time_record (
+	employee_id,
+	target_year,
+	target_month,
+	overtime_hours
+) values (
+	0,
+	2008,
+	3,
+	30
 );

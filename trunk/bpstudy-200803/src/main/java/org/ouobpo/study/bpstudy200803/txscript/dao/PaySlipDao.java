@@ -17,7 +17,13 @@ public interface PaySlipDao {
 
   public List<PaySlip> selectAll();
 
-  @Arguments("ID")
+  @Arguments("id")
   public PaySlip selectById(Integer id);
+
+  @Arguments( {"employee_id", "target_year", "target_month"})
+  public PaySlip selectByEmployeeIdAndYearAndMonth(
+      Integer employeeId,
+      int targetYear,
+      int targetMonth);
 
 }

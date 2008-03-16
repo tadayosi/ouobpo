@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.ouobpo.study.bpstudy200803.txscript.entity.Employee;
 
+/**
+ * 給与計算サービス
+ */
 public interface PayrollService {
 
   /**
