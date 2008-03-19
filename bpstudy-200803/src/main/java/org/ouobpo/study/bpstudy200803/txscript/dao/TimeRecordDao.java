@@ -21,7 +21,7 @@ public interface TimeRecordDao {
   public TimeRecord selectById(Integer id);
 
   @Arguments( {"employee_id", "target_year", "target_month"})
-  public TimeRecord selectByEmployeeIdAndYearAndMonth(
+  public TimeRecord selectByEmployeeIdYearMonth(
       Integer employeeId,
       int targetYear,
       int targetMonth);

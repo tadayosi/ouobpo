@@ -91,7 +91,7 @@ public class PayrollServiceImpl implements PayrollService {
    */
   private int calculateOvertimeAllowance(Employee employee, int year, int month) {
     // 勤怠実績を取得
-    TimeRecord timeRecord = fTimeRecordDao.selectByEmployeeIdAndYearAndMonth(
+    TimeRecord timeRecord = fTimeRecordDao.selectByEmployeeIdYearMonth(
         employee.getEmployeeId(),
         year,
         month);
@@ -126,7 +126,7 @@ public class PayrollServiceImpl implements PayrollService {
       int overtimeAllowance,
       int rentAllowance) {
     // 同一対象年月の給与明細がすでにあるかを確認
-    PaySlip paySlip = fPaySlipDao.selectByEmployeeIdAndYearAndMonth(
+    PaySlip paySlip = fPaySlipDao.selectByEmployeeIdYearMonth(
         employee.getEmployeeId(),
         year,
         month);

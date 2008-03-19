@@ -21,7 +21,7 @@ public interface PaySlipDao {
   public PaySlip selectById(Integer id);
 
   @Arguments( {"employee_id", "target_year", "target_month"})
-  public PaySlip selectByEmployeeIdAndYearAndMonth(
+  public PaySlip selectByEmployeeIdYearMonth(
       Integer employeeId,
       int targetYear,
       int targetMonth);
