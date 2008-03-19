@@ -70,7 +70,7 @@ public class Employee {
 
   private PaySlip paySlipOf(int year, int month) {
     // 同一対象年月の給与明細がすでにあるかを確認
-    PaySlip paySlip = fPaySlipDao.selectByEmployeeIdAndYearAndMonth(
+    PaySlip paySlip = fPaySlipDao.selectByEmployeeIdYearMonth(
         fEmployeeId,
         year,
         month);
@@ -82,10 +82,7 @@ public class Employee {
   }
 
   private TimeRecord timeRecordOf(int year, int month) {
-    return fTimeRecordDao.selectByEmployeeIdAndYearAndMonth(
-        fEmployeeId,
-        year,
-        month);
+    return fTimeRecordDao.selectByEmployeeIdYearMonth(fEmployeeId, year, month);
   }
 
   private void createPaySlip(PaySlip paySlip) {
