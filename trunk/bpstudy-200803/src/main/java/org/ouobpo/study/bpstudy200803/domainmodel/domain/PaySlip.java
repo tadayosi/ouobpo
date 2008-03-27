@@ -19,7 +19,6 @@ public class PaySlip {
   private Integer baseSalary;
   private Integer overtimeAllowance;
   private Integer rentAllowance;
-  private Integer totalAmount;
 
   public PaySlip() {}
 
@@ -97,11 +96,7 @@ public class PaySlip {
   }
 
   public Integer getTotalAmount() {
-    return totalAmount;
-  }
-
-  public void setTotalAmount(Integer totalAmount) {
-    this.totalAmount = totalAmount;
+    return baseSalary + overtimeAllowance + rentAllowance;
   }
 
 }
