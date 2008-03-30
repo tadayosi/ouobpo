@@ -6,7 +6,7 @@ import org.ouobpo.study.bpstudy200803.domainmodel.dao.TimeRecordDao;
 import org.seasar.domainmodel.annotation.LifeCycleObject;
 
 /**
- * 従業員リポジトリ
+ * 勤怠実績リポジトリ
  * 
  * ドメイン層からデータアクセスの実装（S2Dao）を隠蔽する。
  */
