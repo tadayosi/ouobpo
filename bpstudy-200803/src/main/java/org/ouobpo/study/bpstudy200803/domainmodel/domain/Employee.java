@@ -5,36 +5,36 @@ import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.ouobpo.study.bpstudy200803.domainmodel.dao.PaySlipDao;
-import org.ouobpo.study.bpstudy200803.domainmodel.dao.TimeRecordDao;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
+import org.seasar.domainmodel.annotation.OutsideAggregate;
 
 /**
  * 従業員（ドメインモデル）
  */
 @Bean
+@OutsideAggregate
 public class Employee {
 
-  public static final String JOB_TYPE_SALES = "営業";
-  public static final String JOB_TYPE_SE    = "SE";
-  public static final String JOB_TYPE_STAFF = "事務";
+  public static final String   JOB_TYPE_SALES = "営業";
+  public static final String   JOB_TYPE_SE    = "SE";
+  public static final String   JOB_TYPE_STAFF = "事務";
 
-  public static final int    RANK_JUNIOR    = 1;
-  public static final int    RANK_MIDDLE    = 2;
-  public static final int    RANK_SENIOR    = 3;
+  public static final int      RANK_JUNIOR    = 1;
+  public static final int      RANK_MIDDLE    = 2;
+  public static final int      RANK_SENIOR    = 3;
 
-  private Integer            fEmployeeId;
-  private String             fName;
-  private Position           fPosition;
-  private List<Allowance>    fAllowances;
+  private Integer              fEmployeeId;
+  private String               fName;
+  private Position             fPosition;
+  private List<Allowance>      fAllowances;
 
   /** XXX S2Dao用Setter/Getter実装のためだけに使用 */
-  private RentAllowance      fRentAllowance;
+  private RentAllowance        fRentAllowance;
 
-  private TimeRecordDao      fTimeRecordDao;
-  private PaySlipDao         fPaySlipDao;
+  private TimeRecordRepository fTimeRecordRepository;
+  private PaySlipRepository    fPaySlipRepository;
 
   public Employee() {
     // 職責
@@ -70,10 +70,8 @@ public class Employee {
 
   private PaySlip paySlipOf(int year, int month) {
     // 同一対象年月の給与明細がすでにあるかを確認
-    PaySlip paySlip = fPaySlipDao.selectByEmployeeIdYearMonth(
-        fEmployeeId,
-        year,
-        month);
+    PaySlip paySlip =
+        fPaySlipRepository.selectByEmployeeIdYearMonth(fEmployeeId, year, month);
     // 同一対象年月が無ければ、新規作成
     if (paySlip == null) {
       paySlip = new PaySlip(fEmployeeId, year, month);
@@ -82,15 +80,18 @@ public class Employee {
   }
 
   private TimeRecord timeRecordOf(int year, int month) {
-    return fTimeRecordDao.selectByEmployeeIdYearMonth(fEmployeeId, year, month);
+    return fTimeRecordRepository.selectByEmployeeIdYearMonth(
+        fEmployeeId,
+        year,
+        month);
   }
 
   private void createPaySlip(PaySlip paySlip) {
     // IDの有無に応じて、DBに新規作成または更新
     if (paySlip.getId() == null) {
-      fPaySlipDao.insert(paySlip);
+      fPaySlipRepository.insert(paySlip);
     } else {
-      fPaySlipDao.update(paySlip);
+      fPaySlipRepository.update(paySlip);
     }
   }
 
@@ -155,12 +156,12 @@ public class Employee {
 
   //----------------------------------------------------------------------------
 
-  public void setTimeRecordDao(TimeRecordDao timeRecordDao) {
-    fTimeRecordDao = timeRecordDao;
+  public void setTimeRecordRepository(TimeRecordRepository repository) {
+    fTimeRecordRepository = repository;
   }
 
-  public void setPaySlipDao(PaySlipDao paySlipDao) {
-    fPaySlipDao = paySlipDao;
+  public void setPaySlipRepository(PaySlipRepository repository) {
+    fPaySlipRepository = repository;
   }
 
 }
