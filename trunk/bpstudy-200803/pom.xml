@@ -26,20 +26,27 @@
 
   <dependencies>
 
-    <dependency>
+    <!--
+      <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>s2-extension</artifactId>
       <version>2.4.23</version>
-    </dependency>
-    <dependency>
+      </dependency>
+      <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao-tiger</artifactId>
       <version>1.0.47</version>
-    </dependency>
-    <dependency>
+      </dependency>
+      <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-jta_1.1_spec</artifactId>
       <version>1.1.1</version>
+      </dependency>
+    -->
+    <dependency>
+      <groupId>org.seasar.domainmodel</groupId>
+      <artifactId>s2-domainmodel</artifactId>
+      <version>0.1-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -147,7 +154,7 @@
       <name>The Seasar Foundation Maven2 Repository</name>
       <url>http://maven.seasar.org/maven2</url>
     </repository>
-    <!-- for dbinit -->
+    <!-- for s2-domainmodel & dbinit -->
     <repository>
       <id>ouobpo.sourceforge.net</id>
       <url>http://ouobpo.sourceforge.net/maven/</url>

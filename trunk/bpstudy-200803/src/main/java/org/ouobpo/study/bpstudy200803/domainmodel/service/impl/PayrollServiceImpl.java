@@ -2,20 +2,20 @@ package org.ouobpo.study.bpstudy200803.domainmodel.service.impl;
 
 import java.util.List;
 
-import org.ouobpo.study.bpstudy200803.domainmodel.dao.EmployeeDao;
 import org.ouobpo.study.bpstudy200803.domainmodel.domain.Employee;
+import org.ouobpo.study.bpstudy200803.domainmodel.domain.EmployeeRepository;
 import org.ouobpo.study.bpstudy200803.domainmodel.service.PayrollService;
 
 public class PayrollServiceImpl implements PayrollService {
 
-  /** 従業員DAO */
-  private EmployeeDao fEmployeeDao;
+  /** 従業員リポジトリ */
+  private EmployeeRepository fEmployeeRepository;
 
   /**
    * 全従業員取得
    */
   public List<Employee> getAllEmployees() {
-    return fEmployeeDao.selectAll();
+    return fEmployeeRepository.selectAll();
   }
 
   /**
@@ -29,8 +29,8 @@ public class PayrollServiceImpl implements PayrollService {
   // Setter
   //----------------------------------------------------------------------------
 
-  public void setEmployeeDao(EmployeeDao employeeDao) {
-    fEmployeeDao = employeeDao;
+  public void setEmployeeRepository(EmployeeRepository repository) {
+    fEmployeeRepository = repository;
   }
 
 }

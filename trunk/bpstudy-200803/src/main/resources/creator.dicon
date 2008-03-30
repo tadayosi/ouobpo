@@ -4,9 +4,8 @@
 <components>
 	<include path="convention.dicon"/>
 	<include path="customizer.dicon"/>
+	<include path="s2domainmodel.dicon"/>
 
 	<component class="org.seasar.framework.container.creator.DaoCreator"/>
-	<component class="org.seasar.framework.container.creator.LogicCreator"/>
 	<component class="org.seasar.framework.container.creator.ServiceCreator"/>
-	<!-- <component class="org.seasar.framework.container.creator.InterceptorCreator"/> -->
 </components>
