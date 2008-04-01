@@ -13,8 +13,8 @@ public class Position {
 
   @SuppressWarnings("unused")
   private Employee fEmployee;
-  private String   jobType;
-  private Integer  rank;
+  private String   fJobType;
+  private Integer  fRank;
 
   Position(Employee employee) {
     fEmployee = employee;
@@ -26,42 +26,43 @@ public class Position {
    */
   public void calculateBaseSalary(PaySlip paySlip) {
     Integer baseSalary = null;
-    if (Employee.JOB_TYPE_SALES.equals(jobType)) {
+    if (Employee.JOB_TYPE_SALES.equals(fJobType)) {
 
       // 営業職の給料体系
-      if (Employee.RANK_JUNIOR == rank) {
+      if (Employee.RANK_JUNIOR == fRank) {
         baseSalary = 220000;
-      } else if (Employee.RANK_MIDDLE == rank) {
+      } else if (Employee.RANK_MIDDLE == fRank) {
         baseSalary = 320000;
-      } else if (Employee.RANK_SENIOR == rank) {
+      } else if (Employee.RANK_SENIOR == fRank) {
         baseSalary = 420000;
       }
 
-    } else if (Employee.JOB_TYPE_SE.equals(jobType)) {
+    } else if (Employee.JOB_TYPE_SE.equals(fJobType)) {
 
       // SE職の給料体系
-      if (Employee.RANK_JUNIOR == rank) {
+      if (Employee.RANK_JUNIOR == fRank) {
         baseSalary = 210000;
-      } else if (Employee.RANK_MIDDLE == rank) {
+      } else if (Employee.RANK_MIDDLE == fRank) {
         baseSalary = 310000;
-      } else if (Employee.RANK_SENIOR == rank) {
+      } else if (Employee.RANK_SENIOR == fRank) {
         baseSalary = 410000;
       }
 
-    } else if (Employee.JOB_TYPE_STAFF.equals(jobType)) {
+    } else if (Employee.JOB_TYPE_STAFF.equals(fJobType)) {
 
       // 事務職の給料体系
-      if (Employee.RANK_JUNIOR == rank) {
+      if (Employee.RANK_JUNIOR == fRank) {
         baseSalary = 200000;
-      } else if (Employee.RANK_MIDDLE == rank) {
+      } else if (Employee.RANK_MIDDLE == fRank) {
         baseSalary = 300000;
-      } else if (Employee.RANK_SENIOR == rank) {
+      } else if (Employee.RANK_SENIOR == fRank) {
         baseSalary = 400000;
       }
 
     }
-    if (baseSalary == null) { throw new SystemException("予期しない職種またはランク: "
-        + this); }
+    if (baseSalary == null) {
+      throw new SystemException("予期しない職種またはランク: " + this);
+    }
     // 算出結果のセット
     paySlip.setBaseSalary(baseSalary);
   }
@@ -77,19 +78,19 @@ public class Position {
   //----------------------------------------------------------------------------
 
   String getJobType() {
-    return jobType;
+    return fJobType;
   }
 
   void setJobType(String jobType) {
-    this.jobType = jobType;
+    fJobType = jobType;
   }
 
   Integer getRank() {
-    return rank;
+    return fRank;
   }
 
   void setRank(Integer rank) {
-    this.rank = rank;
+    fRank = rank;
   }
 
 }
