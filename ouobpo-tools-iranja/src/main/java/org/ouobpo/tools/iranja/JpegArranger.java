@@ -1,8 +1,8 @@
 package org.ouobpo.tools.iranja;
 
-import static org.apache.commons.io.FileUtils.moveFileToDirectory;
-import static org.apache.commons.lang.time.DateFormatUtils.format;
-import static org.apache.commons.lang.time.DateUtils.parseDate;
+import static org.apache.commons.io.FileUtils.*;
+import static org.apache.commons.lang.time.DateFormatUtils.*;
+import static org.apache.commons.lang.time.DateUtils.*;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -17,8 +17,8 @@ import java.util.List;
 
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
@@ -29,12 +29,12 @@ import com.drew.metadata.exif.ExifDirectory;
 
 public class JpegArranger {
 
-  private static final Log LOG = LogFactory.getLog(JpegArranger.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(JpegArranger.class);
 
   public static void main(String[] args) {
-    LOG.info("=== START =========================================");
+    LOGGER.info("=== START =========================================");
     new JpegArranger().run();
-    LOG.info("=== END ===========================================");
+    LOGGER.info("=== END ===========================================");
   }
 
   //----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ public class JpegArranger {
       try {
         arrange(jpeg);
       } catch (Exception e) {
-        LOG.error("failed to arrange jpeg \"" + jpeg + "\"", e);
+        LOGGER.error("failed to arrange jpeg \"" + jpeg + "\"", e);
       }
     }
   }
@@ -71,14 +71,14 @@ public class JpegArranger {
   protected void arrange(File jpeg)
       throws JpegProcessingException, MetadataException, ParseException,
       IOException {
-    LOG.info(jpeg);
+    LOGGER.info(jpeg.toString());
     Date originalDate = originalDateOf(new FileInputStream(jpeg));
     File toDir = directoryOf(originalDate);
     File destination = new File(toDir, jpeg.getName());
     if (destination.equals(jpeg)) {
-      LOG.info("-> jpeg already arranged.");
+      LOGGER.info("-> jpeg already arranged.");
     } else {
-      LOG.info("-> " + destination);
+      LOGGER.info("-> {}", destination);
       moveFileToDirectory(jpeg, toDir, true);
     }
   }
