@@ -1,7 +1,7 @@
 package org.ouobpo.tools.iranja;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.text.ParseException;
@@ -30,17 +30,21 @@ public class JpegArrangerTest {
   public void testCollectJpegsIn() {
     List<File> result = new ArrayList<File>();
     fJpegArranger.collectJpegsIn(new File("src/test/resources"), result);
-    assertEquals(1, result.size());
-    assertTrue(result.contains(new File("src/test/resources/sample.jpg")));
+    assertThat(result.size(), is(1));
+    assertThat(
+        result.contains(new File("src/test/resources/sample.jpg")),
+        is(true));
 
     result = new ArrayList<File>();
     fJpegArranger.collectJpegsIn(new File("src/test"), result);
-    assertEquals(1, result.size());
-    assertTrue(result.contains(new File("src/test/resources/sample.jpg")));
+    assertThat(result.size(), is(1));
+    assertThat(
+        result.contains(new File("src/test/resources/sample.jpg")),
+        is(true));
 
     result = new ArrayList<File>();
     fJpegArranger.collectJpegsIn(new File("src"), result);
-    assertTrue(result.isEmpty());
+    assertThat(result.isEmpty(), is(true));
   }
 
   @Test
@@ -48,9 +52,9 @@ public class JpegArrangerTest {
       throws JpegProcessingException, MetadataException, ParseException {
     Date originalDateTime = fJpegArranger.originalDateOf(JpegArrangerTest.class.getClassLoader().getResourceAsStream(
         "sample.jpg"));
-    assertEquals("2008/03/09 12:48", DateFormatUtils.format(
-        originalDateTime,
-        "yyyy/MM/dd HH:mm"));
+    assertThat(
+        DateFormatUtils.format(originalDateTime, "yyyy/MM/dd HH:mm"),
+        is("2008/03/09 12:48"));
   }
 
   @Test
@@ -58,7 +62,7 @@ public class JpegArrangerTest {
     File dir = fJpegArranger.directoryOf(DateUtils.parseDate(
         "2008/01/01",
         new String[] {"yyyy/MM/dd"}));
-    assertEquals("20080101", dir.getName());
+    assertThat(dir.getName(), is("20080101"));
   }
 
 }
