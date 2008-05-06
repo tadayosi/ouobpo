@@ -29,7 +29,14 @@
     <dependency>
       <groupId>org.seasar.domainmodel</groupId>
       <artifactId>s2-domainmodel</artifactId>
-      <version>0.1-SNAPSHOT</version>
+      <version>0.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seasar.dao</groupId>
+      <artifactId>s2-dao-tiger</artifactId>
+      <version>1.0.47</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
