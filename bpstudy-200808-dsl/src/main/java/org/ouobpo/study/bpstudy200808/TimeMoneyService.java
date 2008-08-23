@@ -11,4 +11,7 @@ public interface TimeMoneyService {
       TimeOfDay meetingTime,
       CalendarDate day,
       Duration duration);
+
+  @Arguments("day")
+  CalendarDate nextDay(CalendarDate day);
 }

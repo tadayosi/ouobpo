@@ -18,10 +18,15 @@ public class Client {
       TimePoint alertTime = service.dailyMeetingAlert(TimeOfDay.hourAndMinute(
           10,
           0), CalendarDate.from(2008, 8, 31), Duration.minutes(5));
-      System.out.println("> "
-          + alertTime.toString("yyyy/MM/dd HH:mm:ss", TimeZone.getDefault()));
+      out(alertTime.toString("yyyy/MM/dd HH:mm:ss", TimeZone.getDefault()));
+      CalendarDate nextDay = service.nextDay(CalendarDate.from(2008, 8, 31));
+      out(nextDay.toString("yyyy/MM/dd"));
     } finally {
       SingletonS2ContainerFactory.destroy();
     }
+  }
+
+  private static void out(Object obj) {
+    System.out.println("> " + obj);
   }
 }
