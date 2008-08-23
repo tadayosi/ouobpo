@@ -2,9 +2,7 @@
 # Notify 5 minutes before meeting starts.
 # Derive the TimePoint at which I should notify on April 19 2006.
 
-import "java.util.TimeZone"
-
-$meeting_time.
-on($day).
-as_time_point(TimeZone.default).
-minus($duration)
+meeting_time.
+on(day).
+as_time_point($timeZoneFactory.timeZone).
+minus(duration)
