@@ -1,4 +1,4 @@
-package org.ouobpo.study.bpstudy200808;
+package org.ouobpo.study.bpstudy200808.jruby;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface Arguments {
 
-  String[] value() default {};
+  String[] value();
 
 }

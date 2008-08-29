@@ -1,4 +1,4 @@
-package org.ouobpo.study.bpstudy200808;
+package org.ouobpo.study.bpstudy200808.jruby;
 
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
