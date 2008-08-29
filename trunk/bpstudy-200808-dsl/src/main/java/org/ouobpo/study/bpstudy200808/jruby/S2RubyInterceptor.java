@@ -1,4 +1,4 @@
-package org.ouobpo.study.bpstudy200808;
+package org.ouobpo.study.bpstudy200808.jruby;
 
 import static org.apache.commons.io.IOUtils.*;
 import static org.apache.commons.lang.StringUtils.*;
@@ -100,10 +100,6 @@ public class S2RubyInterceptor extends AbstractInterceptor {
     return rubyToJava(fRuby, rubyResult, invocation.getMethod().getReturnType());
   }
 
-  private static String[] argumentNames(MethodInvocation invocation) {
-    return invocation.getMethod().getAnnotation(Arguments.class).value();
-  }
-
   private IRubyObject[] arguments(MethodInvocation invocation) {
     IRubyObject[] ret = new IRubyObject[invocation.getArguments().length];
     for (int i = 0; i < ret.length; i++) {
@@ -144,11 +140,20 @@ public class S2RubyInterceptor extends AbstractInterceptor {
     return method;
   }
 
+  private static String[] argumentNames(MethodInvocation invocation) {
+    Arguments args = invocation.getMethod().getAnnotation(Arguments.class);
+    if (args == null) {
+      return new String[0];
+    } else {
+      return args.value();
+    }
+  }
+
   private String scriptName(MethodInvocation invocation) {
-    String filename = getTargetClass(invocation).getSimpleName()
-        + "_"
-        + invocation.getMethod().getName();
-    return filename;
+    return String.format(
+        "%s_%s",
+        getTargetClass(invocation).getSimpleName(),
+        invocation.getMethod().getName());
   }
 
   private String methodName(MethodInvocation invocation) {

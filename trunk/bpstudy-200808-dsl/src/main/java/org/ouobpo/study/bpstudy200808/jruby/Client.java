@@ -1,4 +1,4 @@
-package org.ouobpo.study.bpstudy200808;
+package org.ouobpo.study.bpstudy200808.jruby;
 
 import java.util.TimeZone;
 

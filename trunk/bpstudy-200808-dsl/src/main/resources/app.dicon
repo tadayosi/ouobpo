@@ -2,14 +2,14 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
 	"http://www.seasar.org/dtd/components24.dtd">
 <components>
-	<component class="org.ouobpo.study.bpstudy200808.TimeMoneyService">
+	<component class="org.ouobpo.study.bpstudy200808.jruby.TimeMoneyService">
 		<aspect pointcut=".*">
-			<component class="org.ouobpo.study.bpstudy200808.S2RubyInterceptor">
+			<component class="org.ouobpo.study.bpstudy200808.jruby.S2RubyInterceptor">
 				<initMethod name="init"/>
 				<destroyMethod name="destroy"/>
 			</component>
 		</aspect>
 	</component>
 	<component name="timeZoneFactory"
-		class="org.ouobpo.study.bpstudy200808.TimeZoneFactory"/>
+		class="org.ouobpo.study.bpstudy200808.jruby.TimeZoneFactory"/>
 </components>
