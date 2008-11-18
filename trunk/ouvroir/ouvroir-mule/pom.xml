@@ -98,6 +98,12 @@
       </exclusions>
     </dependency>
 
+    <dependency>
+      <groupId>org.ouobpo.javaextension</groupId>
+      <artifactId>ouobpo-javaextension</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
+
     <!-- ***** test ************************************ -->
     <dependency>
       <groupId>junit</groupId>
@@ -106,5 +112,13 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>ouobpo</id>
+      <name>Ouobpo</name>
+      <url>http://ouobpo.sf.net/maven/</url>
+    </repository>
+  </repositories>
 
 </project>
