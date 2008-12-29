@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: Main.java 887 2008-05-11 12:29:14Z hanao $
+ * @version $Id$
  */
 public class Main {
   private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);

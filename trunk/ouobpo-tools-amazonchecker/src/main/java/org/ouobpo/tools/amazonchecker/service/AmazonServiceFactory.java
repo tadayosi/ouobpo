@@ -4,7 +4,7 @@ import org.ouobpo.tools.amazonchecker.service.impl.HTMLParsingAmazonService;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: AmazonServiceFactory.java 684 2007-02-07 14:31:17Z hanao $
+ * @version $Id$
  */
 public class AmazonServiceFactory {
 

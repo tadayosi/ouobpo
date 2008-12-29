@@ -19,7 +19,7 @@ import com.domainlanguage.money.Money;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: HTMLParsingAmazonService.java 886 2008-05-11 11:25:46Z hanao $
+ * @version $Id$
  */
 public class HTMLParsingAmazonService implements IAmazonService {
   private static final Logger LOGGER                      = LoggerFactory.getLogger(HTMLParsingAmazonService.class);

@@ -15,7 +15,7 @@ import com.domainlanguage.money.Money;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: HTMLParsingAmazonServiceTest.java 886 2008-05-11 11:25:46Z hanao $
+ * @version $Id$
  */
 public class HTMLParsingAmazonServiceTest {
 

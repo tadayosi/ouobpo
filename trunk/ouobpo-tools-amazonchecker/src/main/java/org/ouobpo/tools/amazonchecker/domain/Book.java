@@ -26,7 +26,7 @@ import com.domainlanguage.timeutil.SystemClock;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: Book.java 883 2008-05-05 12:56:36Z hanao $
+ * @version $Id$
  */
 public class Book {
   private static final Logger LOGGER            = LoggerFactory.getLogger(Book.class);

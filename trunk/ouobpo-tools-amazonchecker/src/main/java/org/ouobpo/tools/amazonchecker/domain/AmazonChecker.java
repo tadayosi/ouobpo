@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: AmazonChecker.java 876 2008-04-28 14:16:44Z hanao $
+ * @version $Id$
  */
 public class AmazonChecker {
   private static final Logger LOGGER = LoggerFactory.getLogger(AmazonChecker.class);

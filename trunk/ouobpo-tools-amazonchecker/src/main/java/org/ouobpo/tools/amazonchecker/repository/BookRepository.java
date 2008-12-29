@@ -18,7 +18,7 @@ import com.db4o.ObjectSet;
  * TODO: トランザクション管理をリポジトリの外に移す
  * 
  * @author SATO, Tadayosi
- * @version $Id: BookRepository.java 876 2008-04-28 14:16:44Z hanao $
+ * @version $Id$
  */
 public class BookRepository {
   private static final Logger LOGGER = LoggerFactory.getLogger(BookRepository.class);

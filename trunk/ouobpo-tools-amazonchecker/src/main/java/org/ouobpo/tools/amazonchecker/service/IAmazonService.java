@@ -6,7 +6,7 @@ import com.domainlanguage.money.Money;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: IAmazonService.java 693 2007-02-17 04:52:50Z hanao $
+ * @version $Id$
  */
 public interface IAmazonService {
   /**

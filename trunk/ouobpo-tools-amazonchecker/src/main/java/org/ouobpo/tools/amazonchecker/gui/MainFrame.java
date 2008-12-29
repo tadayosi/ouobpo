@@ -31,7 +31,7 @@ import com.domainlanguage.timeutil.SystemClock;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: MainFrame.java 887 2008-05-11 12:29:14Z hanao $
+ * @version $Id$
  */
 public class MainFrame extends JFrame {
   private static final long serialVersionUID   = -393193197673432437L;
