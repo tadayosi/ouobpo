@@ -6,7 +6,7 @@
   <groupId>org.ouobpo.tools</groupId>
   <artifactId>ouobpo-tools-amazonchecker</artifactId>
   <name>Ouobpo Tools AmazonChecker</name>
-  <version>0.1.11</version>
+  <version>0.1.11-SNAPSHOT</version>
   <url>http://www.ouobpo.org/</url>
   <inceptionYear>2007</inceptionYear>
 
