@@ -2,7 +2,7 @@ package org.ouobpo.tools.amazonchecker.exception;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: ServiceException.java 835 2008-03-07 15:17:25Z hanao $
+ * @version $Id$
  */
 public class ServiceException extends Exception {
 

@@ -8,7 +8,7 @@ import com.domainlanguage.timeutil.SystemClock;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: BookPrice.java 703 2007-02-27 13:32:50Z hanao $
+ * @version $Id$
  */
 public class BookPrice implements Comparable<BookPrice> {
   private enum Type {

@@ -2,7 +2,7 @@ package org.ouobpo.tools.amazonchecker;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: Constants.java 887 2008-05-11 12:29:14Z hanao $
+ * @version $Id$
  */
 public final class Constants {
   public static final String AMAZONCHECKER_SYSTEM_PROPERTIES = "amazonchecker-system.properties";

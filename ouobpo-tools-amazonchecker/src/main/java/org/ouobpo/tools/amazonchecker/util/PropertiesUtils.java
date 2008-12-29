@@ -7,7 +7,7 @@ import java.util.Properties;
 
 /**
  * @author SATO, Tadayosi
- * @version $Id: PropertiesUtils.java 693 2007-02-17 04:52:50Z hanao $
+ * @version $Id$
  */
 public class PropertiesUtils {
   public static Properties loadProperties(String propPath) throws IOException {
