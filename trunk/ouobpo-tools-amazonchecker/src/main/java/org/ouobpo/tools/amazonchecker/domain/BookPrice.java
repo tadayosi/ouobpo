@@ -60,7 +60,7 @@ public class BookPrice implements Comparable<BookPrice> {
   }
 
   //----------------------------------------------------------------------------
-  // getters
+  // Getters
   //----------------------------------------------------------------------------
 
   public Type getType() {
