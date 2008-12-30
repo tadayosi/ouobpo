@@ -17,7 +17,7 @@ public class Configuration {
   private static final String        PROP_VERSION    = "amazonchecker.version";
   private static final String        PROP_BROWSER    = "amazonchecker.browser";
 
-  private static final String        DEFAULT_BROWSER = "explorer";
+  private static final String        DEFAULT_BROWSER = "open";
 
   private static final Configuration SINGLETON       = new Configuration();
 
