@@ -1,5 +1,6 @@
 package org.ouobpo.tools.amazonchecker;
 
+import static org.apache.commons.lang.SystemUtils.*;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -12,14 +13,23 @@ import org.slf4j.LoggerFactory;
  * @version $Id$
  */
 public class Configuration {
-  private static final Logger        LOGGER          = LoggerFactory.getLogger(Configuration.class);
+  private static final Logger        LOGGER       = LoggerFactory.getLogger(Configuration.class);
 
-  private static final String        PROP_VERSION    = "amazonchecker.version";
-  private static final String        PROP_BROWSER    = "amazonchecker.browser";
+  private static final String        PROP_VERSION = "amazonchecker.version";
+  private static final String        PROP_BROWSER = "amazonchecker.browser";
 
-  private static final String        DEFAULT_BROWSER = "open";
+  private static final String        DEFAULT_BROWSER;
+  static {
+    if (IS_OS_WINDOWS) {
+      DEFAULT_BROWSER = "explorer";
+    } else if (IS_OS_MAC) {
+      DEFAULT_BROWSER = "open";
+    } else {
+      DEFAULT_BROWSER = "unsupported os!";
+    }
+  }
 
-  private static final Configuration SINGLETON       = new Configuration();
+  private static final Configuration SINGLETON    = new Configuration();
 
   public static Configuration instance() {
     return SINGLETON;

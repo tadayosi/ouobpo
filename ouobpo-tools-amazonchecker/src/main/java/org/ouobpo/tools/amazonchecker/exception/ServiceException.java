@@ -4,10 +4,8 @@ package org.ouobpo.tools.amazonchecker.exception;
  * @author SATO, Tadayosi
  * @version $Id$
  */
+@SuppressWarnings("serial")
 public class ServiceException extends Exception {
-
-  private static final long serialVersionUID = 2364969966268747669L;
-
   public ServiceException() {
     super();
   }

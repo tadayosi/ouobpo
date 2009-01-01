@@ -4,10 +4,8 @@ package org.ouobpo.tools.amazonchecker.exception;
  * @author SATO, Tadayosi
  * @version $Id$
  */
+@SuppressWarnings("serial")
 public class DomainException extends Exception {
-
-  private static final long serialVersionUID = -2802686566573654960L;
-
   public DomainException() {
     super();
   }

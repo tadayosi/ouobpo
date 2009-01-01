@@ -60,6 +60,27 @@ public class BookPrice implements Comparable<BookPrice> {
   }
 
   //----------------------------------------------------------------------------
+  // ユーティリティ
+  //----------------------------------------------------------------------------
+
+  public static BookPrice lowestPrice(List<BookPrice> prices) {
+    BookPrice lowest = null;
+    for (BookPrice price : prices) {
+      if (price == null) {
+        continue;
+      }
+      if (lowest == null) {
+        lowest = price;
+        continue;
+      }
+      if (lowest.compareTo(price) > 0) {
+        lowest = price;
+      }
+    }
+    return lowest;
+  }
+
+  //----------------------------------------------------------------------------
   // Getters
   //----------------------------------------------------------------------------
 
@@ -89,26 +110,5 @@ public class BookPrice implements Comparable<BookPrice> {
 
   public void setCreatedTime(TimePoint createdTime) {
     fCreatedTime = createdTime;
-  }
-
-  //----------------------------------------------------------------------------
-  // ユーティリティ
-  //----------------------------------------------------------------------------
-
-  public static BookPrice lowestPrice(List<BookPrice> prices) {
-    BookPrice lowest = null;
-    for (BookPrice price : prices) {
-      if (price == null) {
-        continue;
-      }
-      if (lowest == null) {
-        lowest = price;
-        continue;
-      }
-      if (lowest.compareTo(price) > 0) {
-        lowest = price;
-      }
-    }
-    return lowest;
   }
 }
