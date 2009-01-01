@@ -52,5 +52,4 @@ public class AWSRestAmazonServiceTest {
     assertThat(book.getListPrice(), is(yen_2730));
     assertThat(book.getUsedPrice(), is(yen_2250));
   }
-
 }
