@@ -33,7 +33,8 @@ public class AWSRestAmazonService implements IAmazonService {
   private static final String AWS_PARAMS_TEMPLATE = "?Service=AWSECommerceService"
                                                       + "&AWSAccessKeyId=041WR28EQVEF1112J6G2"
                                                       + "&Operation=ItemLookup"
-                                                      + "&ItemId=%s&Condition=All"
+                                                      + "&ItemId=%s"
+                                                      + "&Condition=All"
                                                       + "&MerchantId=All"
                                                       + "&ResponseGroup=Offers,Small";
 
