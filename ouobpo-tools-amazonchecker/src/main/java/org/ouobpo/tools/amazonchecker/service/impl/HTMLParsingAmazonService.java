@@ -2,7 +2,6 @@ package org.ouobpo.tools.amazonchecker.service.impl;
 
 import static org.apache.commons.lang.StringEscapeUtils.*;
 import static org.apache.commons.lang.StringUtils.*;
-import static org.ouobpo.tools.amazonchecker.Constants.*;
 import static org.ouobpo.tools.amazonchecker.util.HttpUtils.*;
 
 import java.math.BigDecimal;
@@ -21,6 +20,9 @@ import com.domainlanguage.money.Money;
  */
 public class HTMLParsingAmazonService implements IAmazonService {
   private static final Logger LOGGER                      = LoggerFactory.getLogger(HTMLParsingAmazonService.class);
+
+  private static final String BOOK_URL_BASE               = "http://www.amazon.co.jp/gp/product/";
+  private static final String BOOK_PRICE_LIST_URL_BASE    = "http://www.amazon.co.jp/gp/offer-listing/";
 
   private static final String HTML_TITLE_BEGIN_1          = "id=\"prodImage\" width=\"240\" height=\"240\" border=\"0\" alt=\"";
   private static final String HTML_TITLE_END_1            = "\"";
