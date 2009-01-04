@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.ouobpo.tools.amazonchecker.Configuration;
-import org.ouobpo.tools.amazonchecker.Constants;
 import org.ouobpo.tools.amazonchecker.exception.DomainException;
 import org.ouobpo.tools.amazonchecker.exception.ServiceException;
 import org.ouobpo.tools.amazonchecker.service.AmazonServiceFactory;
@@ -29,15 +28,17 @@ import com.domainlanguage.timeutil.SystemClock;
  * @version $Id$
  */
 public class Book {
-  private static final Logger LOGGER            = LoggerFactory.getLogger(Book.class);
+  private static final Logger LOGGER                   = LoggerFactory.getLogger(Book.class);
+
+  private static final String AMAZON_PAGE_URL_TEMPLATE = "http://www.amazon.co.jp/gp/offer-listing/%s/?tag=ouobpo-22";
 
   private String              fAsin;
   private String              fTitle;
   private boolean             fActive;
   private TimePoint           fCreatedTime;
 
-  private List<BookPrice>     fListPriceHistory = new ArrayList<BookPrice>();
-  private List<BookPrice>     fUsedPriceHistory = new ArrayList<BookPrice>();
+  private List<BookPrice>     fListPriceHistory        = new ArrayList<BookPrice>();
+  private List<BookPrice>     fUsedPriceHistory        = new ArrayList<BookPrice>();
 
   /**
    * ファクトリメソッド
@@ -154,13 +155,23 @@ public class Book {
    */
   public void showAmazonPage() {
     try {
-      Runtime.getRuntime().exec(
-          new String[] {
-              Configuration.instance().getBrowser(),
-              Constants.BOOK_PRICE_LIST_URL_BASE + fAsin});
+      String browser = Configuration.instance().getBrowser();
+      String url = String.format(AMAZON_PAGE_URL_TEMPLATE, fAsin);
+
+      // ***デバッグログ***
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug("Amazonページを表示: {} {}", browser, url);
+      }
+
+      // URLに「?」が入っているとダブルクォートが必要（？）
+      Runtime.getRuntime().exec(new String[] {browser, doubleQuote(url)});
     } catch (IOException e) {
       LOGGER.error("Amazonページ起動に失敗", e);
     }
+  }
+
+  private static final String doubleQuote(String str) {
+    return new StringBuilder().append("\"").append(str).append("\"").toString();
   }
 
   public String listPriceIndicator() {
