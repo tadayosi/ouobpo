@@ -64,7 +64,7 @@ public class AmazonChecker {
 
     if (existent == null) {
       // 新規登録
-      Book book = Book.createBookFromAmazon(asin);
+      Book book = Book.createFromAmazon(asin);
       fBookRepository.save(book);
       LOGGER.info("書籍追加: ASIN={}, {}", asin, book.getTitle());
     } else {

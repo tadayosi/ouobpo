@@ -17,6 +17,7 @@ import com.domainlanguage.money.Money;
  * @author SATO, Tadayosi
  * @version $Id$
  */
+@SuppressWarnings("deprecation")
 public class HTMLParsingAmazonServiceTest {
 
   /** テスト対象 */

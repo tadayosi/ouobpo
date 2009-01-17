@@ -1,6 +1,5 @@
 package org.ouobpo.tools.amazonchecker.domain;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -10,11 +9,11 @@ import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.ouobpo.tools.amazonchecker.Configuration;
 import org.ouobpo.tools.amazonchecker.exception.DomainException;
 import org.ouobpo.tools.amazonchecker.exception.ServiceException;
 import org.ouobpo.tools.amazonchecker.service.AmazonServiceFactory;
 import org.ouobpo.tools.amazonchecker.service.IAmazonService;
+import org.ouobpo.tools.amazonchecker.service.SystemService;
 import org.ouobpo.tools.amazonchecker.service.IAmazonService.BookData;
 import org.ouobpo.tools.amazonchecker.util.SortUtils;
 import org.slf4j.Logger;
@@ -30,7 +29,7 @@ import com.domainlanguage.timeutil.SystemClock;
 public class Book {
   private static final Logger LOGGER                   = LoggerFactory.getLogger(Book.class);
 
-  private static final String AMAZON_PAGE_URL_TEMPLATE = "http://www.amazon.co.jp/gp/offer-listing/%s/?tag=ouobpo-22";
+  private static final String AMAZON_PAGE_URL_TEMPLATE = "http://www.amazon.co.jp/gp/offer-listing/%s?tag=ouobpo-22";
 
   private String              fAsin;
   private String              fTitle;
@@ -44,10 +43,10 @@ public class Book {
    * ファクトリメソッド
    * @throws DomainException 該当書籍が存在しなかった場合
    */
-  public static Book createBookFromAmazon(String asin) throws DomainException {
-    IAmazonService amazon = AmazonServiceFactory.createAmazonService();
+  public static Book createFromAmazon(String asin) throws DomainException {
+    IAmazonService amazonService = AmazonServiceFactory.create();
     try {
-      BookData data = amazon.getBookData(asin);
+      BookData data = amazonService.getBookData(asin);
       Book book = new Book(asin, data.getTitle(), true, SystemClock.now());
       book.addListPriceHistory(BookPrice.newListPrice(data.getListPrice()));
       book.addUsedPriceHistory(BookPrice.newUsedPrice(data.getUsedPrice()));
@@ -71,9 +70,9 @@ public class Book {
    * @return 書籍情報が更新された場合
    */
   public boolean update() throws DomainException {
-    IAmazonService amazon = AmazonServiceFactory.createAmazonService();
+    IAmazonService amazonService = AmazonServiceFactory.create();
     try {
-      BookData data = amazon.getBookData(fAsin);
+      BookData data = amazonService.getBookData(fAsin);
       if (!isUpdated(data)) {
         return false;
       }
@@ -154,24 +153,9 @@ public class Book {
    * Amazonページを表示
    */
   public void showAmazonPage() {
-    try {
-      String browser = Configuration.instance().getBrowser();
-      String url = String.format(AMAZON_PAGE_URL_TEMPLATE, fAsin);
-
-      // ***デバッグログ***
-      if (LOGGER.isDebugEnabled()) {
-        LOGGER.debug("Amazonページを表示: {} {}", browser, url);
-      }
-
-      // URLに「?」が入っているとダブルクォートが必要（？）
-      Runtime.getRuntime().exec(new String[] {browser, doubleQuote(url)});
-    } catch (IOException e) {
-      LOGGER.error("Amazonページ起動に失敗", e);
-    }
-  }
-
-  private static final String doubleQuote(String str) {
-    return new StringBuilder().append("\"").append(str).append("\"").toString();
+    String url = String.format(AMAZON_PAGE_URL_TEMPLATE, fAsin);
+    SystemService systemService = SystemService.create();
+    systemService.launchBrowser(url);
   }
 
   public String listPriceIndicator() {

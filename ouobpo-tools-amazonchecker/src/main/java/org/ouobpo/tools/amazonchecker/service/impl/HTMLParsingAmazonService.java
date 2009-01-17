@@ -18,6 +18,7 @@ import com.domainlanguage.money.Money;
  * @author SATO, Tadayosi
  * @version $Id$
  */
+@Deprecated
 public class HTMLParsingAmazonService implements IAmazonService {
   private static final Logger LOGGER                      = LoggerFactory.getLogger(HTMLParsingAmazonService.class);
 
@@ -38,7 +39,7 @@ public class HTMLParsingAmazonService implements IAmazonService {
   private static final String HTML_USED_END               = "</span>";
 
   public BookData getBookData(String asin) throws ServiceException {
-    String page = readWebPage(BOOK_URL_BASE + asin);
+    String page = get(BOOK_URL_BASE + asin);
 
     String title = extractTitle(page);
     Money listPrice = extractListPrice(page, asin);
@@ -88,7 +89,7 @@ public class HTMLParsingAmazonService implements IAmazonService {
     if (price == null) {
       // Amazonの新品が存在しなかった場合は、マーケットプレイスからも
       // 新品を探す
-      String priceListPage = readWebPage(BOOK_PRICE_LIST_URL_BASE
+      String priceListPage = get(BOOK_PRICE_LIST_URL_BASE
           + asin
           + "?condition=new");
       price = stringToMoney(substringBetween(

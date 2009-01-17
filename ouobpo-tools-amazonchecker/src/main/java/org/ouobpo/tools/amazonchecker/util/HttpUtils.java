@@ -18,15 +18,27 @@ import org.slf4j.LoggerFactory;
 public class HttpUtils {
   private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtils.class);
 
-  public static String readWebPage(String url) throws ServiceException {
+  public static String get(String url) throws ServiceException {
+    return get(new HttpClient(), url);
+  }
+
+  public static String getViaProxy(String url, String proxyHost, int proxyPort)
+      throws ServiceException {
+    HttpClient httpClient = new HttpClient();
+    httpClient.getHostConfiguration().setProxy(proxyHost, proxyPort);
+    return get(httpClient, url);
+  }
+
+  private static String get(HttpClient httpClient, String url)
+      throws ServiceException {
     HttpMethod method = new GetMethod(url);
-    // User-Agentを偽装しないとユーズド価格を取得できない
+    // XXX Amazon Webページでは、User-Agentを偽装しないとユーズド価格を取得できない
     method.setRequestHeader(
         "User-Agent",
         "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
     String page = null;
     try {
-      int status = new HttpClient().executeMethod(method);
+      int status = httpClient.executeMethod(method);
       if (HttpStatus.SC_OK != status) {
         LOGGER.warn("ページ読込に失敗: ({}) {}", status, url);
       } else {
