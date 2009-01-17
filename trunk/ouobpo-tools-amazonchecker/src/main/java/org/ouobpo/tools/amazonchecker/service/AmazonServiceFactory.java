@@ -7,7 +7,7 @@ import org.ouobpo.tools.amazonchecker.service.impl.AWSRestAmazonService;
  * @version $Id$
  */
 public class AmazonServiceFactory {
-  public static IAmazonService createAmazonService() {
+  public static IAmazonService create() {
     return new AWSRestAmazonService();
   }
 }

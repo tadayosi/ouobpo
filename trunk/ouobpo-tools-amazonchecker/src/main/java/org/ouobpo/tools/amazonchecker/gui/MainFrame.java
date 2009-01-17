@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
     this.setSize(800, 600);
     this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
     this.setContentPane(getRootContentPane());
-    this.setTitle("AmazonChecker v" + Configuration.instance().getVersion());
+    this.setTitle("AmazonChecker v" + Configuration.instance().version());
     this.setVisible(true);
   }
 

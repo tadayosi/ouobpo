@@ -3,6 +3,7 @@ package org.ouobpo.tools.amazonchecker.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -21,8 +22,11 @@ public class PropertiesUtils {
     }
 
     // 次にJARから検索
-    props.load(PropertiesUtils.class.getClassLoader().getResourceAsStream(
-        propPath));
+    InputStream inputStream = PropertiesUtils.class.getClassLoader().getResourceAsStream(
+        propPath);
+    if (inputStream != null) {
+      props.load(inputStream);
+    }
 
     return props;
   }

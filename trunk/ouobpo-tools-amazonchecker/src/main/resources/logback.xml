@@ -40,7 +40,7 @@
 
   <root>
     <level value="warn" />
-    <!-- <appender-ref ref="STDOUT" /> -->
+    <appender-ref ref="STDOUT" />
     <appender-ref ref="FILE" />
   </root>
 

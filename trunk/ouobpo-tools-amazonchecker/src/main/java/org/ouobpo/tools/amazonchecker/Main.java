@@ -17,7 +17,7 @@ public class Main {
   public static void main(String[] args) {
     LOGGER.info(
         "****** AmazonChecker v{} ******************************************************************************",
-        Configuration.instance().getVersion());
+        Configuration.instance().version());
     initDbDirectory();
     MainFrame window = null;
     try {

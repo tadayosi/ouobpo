@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 
+import org.ouobpo.tools.amazonchecker.Configuration;
 import org.ouobpo.tools.amazonchecker.exception.ServiceException;
 import org.ouobpo.tools.amazonchecker.service.IAmazonService;
 import org.slf4j.Logger;
@@ -55,7 +56,12 @@ public class AWSRestAmazonService implements IAmazonService {
   }
 
   protected String lookupItem(String asin) throws ServiceException {
-    return readWebPage(AWS_URL + String.format(AWS_PARAMS_TEMPLATE, asin));
+    String url = AWS_URL + String.format(AWS_PARAMS_TEMPLATE, asin);
+    Configuration config = Configuration.instance();
+    if (config.isProxySet()) {
+      return getViaProxy(url, config.proxyHost(), config.proxyPort());
+    }
+    return get(url);
   }
 
   private static String title(String xml) throws ServiceException {
