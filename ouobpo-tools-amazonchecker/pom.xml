@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ouobpo.tools</groupId>
   <artifactId>ouobpo-tools-amazonchecker</artifactId>
   <name>Ouobpo Tools AmazonChecker</name>
-  <version>0.2.1-SNAPSHOT</version>
+  <version>0.2.1</version>
   <url>http://www.ouobpo.org/</url>
   <inceptionYear>2007</inceptionYear>
 
@@ -143,7 +142,7 @@
   </repositories>
 
   <scm>
-    <developerConnection>scm:svn:https://ouobpo.googlecode.com/svn/trunk/ouobpo-tools-amazonchecker</developerConnection>
+    <developerConnection>scm:svn:https://ouobpo.googlecode.com/svn/tags/ouobpo-tools-amazonchecker-0.2.1</developerConnection>
   </scm>
 
 </project>
