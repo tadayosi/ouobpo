@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Currency;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.ouobpo.tools.amazonchecker.exception.ServiceException;
 import org.ouobpo.tools.amazonchecker.service.IAmazonService.BookData;
@@ -17,6 +18,7 @@ import com.domainlanguage.money.Money;
  * @author SATO, Tadayosi
  * @version $Id$
  */
+@Ignore
 @SuppressWarnings("deprecation")
 public class HTMLParsingAmazonServiceTest {
 
