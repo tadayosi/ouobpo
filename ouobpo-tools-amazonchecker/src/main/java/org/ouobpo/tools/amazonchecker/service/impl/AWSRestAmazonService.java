@@ -58,10 +58,18 @@ public class AWSRestAmazonService implements IAmazonService {
   protected String lookupItem(String asin) throws ServiceException {
     String url = AWS_URL + String.format(AWS_PARAMS_TEMPLATE, asin);
     Configuration config = Configuration.instance();
-    if (config.isProxySet()) {
+    if (!config.isProxySet()) {
+      return get(url);
+    }
+    if (!config.isProxyAuthenticationSet()) {
       return getViaProxy(url, config.proxyHost(), config.proxyPort());
     }
-    return get(url);
+    return getViaProxy(
+        url,
+        config.proxyHost(),
+        config.proxyPort(),
+        config.proxyUser(),
+        config.proxyPassword());
   }
 
   private static String title(String xml) throws ServiceException {
