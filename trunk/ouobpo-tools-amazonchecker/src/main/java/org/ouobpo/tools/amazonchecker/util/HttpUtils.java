@@ -5,6 +5,8 @@ import static org.apache.commons.lang.StringUtils.*;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.UsernamePasswordCredentials;
+import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.ouobpo.tools.amazonchecker.exception.ServiceException;
 import org.slf4j.Logger;
@@ -24,8 +26,22 @@ public class HttpUtils {
 
   public static String getViaProxy(String url, String proxyHost, int proxyPort)
       throws ServiceException {
+    return getViaProxy(url, proxyHost, proxyPort, null, null);
+  }
+
+  public static String getViaProxy(
+      String url,
+      String proxyHost,
+      int proxyPort,
+      String proxyUser,
+      String proxyPassword) throws ServiceException {
     HttpClient httpClient = new HttpClient();
     httpClient.getHostConfiguration().setProxy(proxyHost, proxyPort);
+    if (isNotEmpty(proxyUser)) {
+      httpClient.getState().setProxyCredentials(
+          new AuthScope(proxyHost, proxyPort),
+          new UsernamePasswordCredentials(proxyUser, proxyPassword));
+    }
     return get(httpClient, url);
   }
 
