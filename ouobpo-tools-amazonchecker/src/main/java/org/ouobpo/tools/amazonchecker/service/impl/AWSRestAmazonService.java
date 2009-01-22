@@ -42,6 +42,8 @@ public class AWSRestAmazonService implements IAmazonService {
   public BookData getBookData(String asin) throws ServiceException {
     String xml = lookupItem(asin);
 
+    validate(xml);
+
     String title = title(xml);
     Money listPrice = listPrice(xml);
     Money usedPrice = usedPrice(xml);
@@ -70,6 +72,16 @@ public class AWSRestAmazonService implements IAmazonService {
         config.proxyPort(),
         config.proxyUser(),
         config.proxyPassword());
+  }
+
+  private static void validate(String xml) throws ServiceException {
+    String errors = readElement(xml, "/ItemLookupResponse/Items/Request/Errors");
+    if (isNotEmpty(errors)) {
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug(errors);
+      }
+      throw new ServiceException(errors);
+    }
   }
 
   private static String title(String xml) throws ServiceException {
