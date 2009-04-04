@@ -1,5 +1,6 @@
 package org.ouobpo.tools.amazonchecker.service.impl;
 
+import static org.apache.commons.codec.binary.Base64.*;
 import static org.apache.commons.lang.StringUtils.*;
 import static org.ouobpo.tools.amazonchecker.util.HttpUtils.*;
 
@@ -32,7 +33,9 @@ public class AWSRestAmazonService implements IAmazonService {
 
   private static final String AWS_URL             = "http://ecs.amazonaws.jp/onca/xml";
   private static final String AWS_PARAMS_TEMPLATE = "?Service=AWSECommerceService"
-                                                      + "&AWSAccessKeyId=041WR28EQVEF1112J6G2"
+                                                      + "&AWSAccessKeyId="
+                                                      + new String(
+                                                          decodeBase64("MDQxV1IyOEVRVkVGMTExMko2RzI=".getBytes()))
                                                       + "&Operation=ItemLookup"
                                                       + "&ItemId=%s"
                                                       + "&Condition=All"
