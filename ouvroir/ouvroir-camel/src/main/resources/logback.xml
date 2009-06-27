@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        %-5p %d{yyyy-MM-dd HH:mm:ss} [%40.40(%C{30}.%M:%3L)] %m%n
+      </Pattern>
+    </layout>
+  </appender>
+
+  <logger name="org.apache">
+    <level value="warn" />
+  </logger>
+  <logger name="org.apache.camel">
+    <level value="info" />
+  </logger>
+
+  <logger name="org.ouobpo.ouvroir">
+    <level value="debug" />
+  </logger>
+
+  <root>
+    <level value="warn" />
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>
