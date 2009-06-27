@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cml="http://camel.apache.org/schema/spring"
+  xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <bean class="org.ouobpo.ouvroir.camel.hello.Hello" />
+  <bean class="org.ouobpo.ouvroir.camel.hello.Display" />
+
+  <cml:camelContext />
+
+</beans>
