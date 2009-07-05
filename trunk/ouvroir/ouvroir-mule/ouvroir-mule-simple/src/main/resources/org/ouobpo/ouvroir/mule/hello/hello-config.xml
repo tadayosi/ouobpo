@@ -22,10 +22,7 @@
         </pass-through-router>
       </outbound>
     </service>
-  </model>
-
-  <model name="helloService">
-    <service name="HelloService">
+    <service name="helloService">
       <inbound>
         <inbound-endpoint ref="HelloService.hello" />
       </inbound>

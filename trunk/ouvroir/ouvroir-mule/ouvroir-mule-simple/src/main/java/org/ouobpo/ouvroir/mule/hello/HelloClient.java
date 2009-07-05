@@ -1,5 +1,7 @@
 package org.ouobpo.ouvroir.mule.hello;
 
+import static org.ouobpo.javaextension.JavaExtensions.*;
+
 import org.mule.api.MuleContext;
 import org.mule.api.MuleException;
 import org.mule.api.MuleMessage;
@@ -14,17 +16,9 @@ public class HelloClient {
 
   public static void main(String[] args) {
     HelloService service = new HelloService();
-    out(service.hello(HelloClient.class.getSimpleName()));
+    println(service.hello(HelloClient.class.getSimpleName()));
 
-    MuleContext context = null;
-    try {
-      context = new DefaultMuleContextFactory().createMuleContext(new SpringXmlConfigurationBuilder(
-          "org/ouobpo/ouvroir/mule/hello/hello.xml"));
-      context.start();
-    } catch (MuleException e) {
-      LOGGER.error(e.getMessage());
-    }
-
+    MuleContext context = startMuleServer();
     try {
       MuleClient client = new MuleClient();
       // enhance
@@ -32,17 +26,33 @@ public class HelloClient {
           "vm://hello?method=enhance",
           HelloClient.class.getSimpleName(),
           null);
-      out(message.getPayload());
+      println(message.getPayload());
       // asterisk
       message = client.send(
           "vm://hello?method=asterisk",
           HelloClient.class.getSimpleName(),
           null);
-      out(message.getPayload());
+      println(message.getPayload());
     } catch (MuleException e) {
       LOGGER.error(e.getMessage());
+    } finally {
+      stopMuleServer(context);
     }
+  }
 
+  private static MuleContext startMuleServer() {
+    try {
+      MuleContext context = new DefaultMuleContextFactory().createMuleContext(new SpringXmlConfigurationBuilder(
+          "org/ouobpo/ouvroir/mule/hello/hello-config.xml"));
+      context.start();
+      return context;
+    } catch (MuleException e) {
+      LOGGER.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+  }
+
+  private static void stopMuleServer(MuleContext context) {
     if (context != null) {
       try {
         context.stop();
@@ -51,9 +61,5 @@ public class HelloClient {
       }
       context.dispose();
     }
-  }
-
-  private static void out(Object msg) {
-    System.out.println(msg);
   }
 }
