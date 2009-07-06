@@ -4,7 +4,6 @@ import static org.ouobpo.javaextension.JavaExtensions.*;
 
 import org.mule.api.MuleContext;
 import org.mule.api.MuleException;
-import org.mule.api.MuleMessage;
 import org.mule.config.spring.SpringXmlConfigurationBuilder;
 import org.mule.context.DefaultMuleContextFactory;
 import org.mule.module.client.MuleClient;
@@ -16,34 +15,36 @@ public class HelloClient {
 
   public static void main(String[] args) {
     HelloService service = new HelloService();
-    println(service.hello(HelloClient.class.getSimpleName()));
+    print(service.hello(HelloClient.class.getSimpleName()));
 
-    MuleContext context = startMuleServer();
+    MuleContext context = null;
     try {
+      context = startMuleServer("hello-config.xml");
+
       MuleClient client = new MuleClient();
       // enhance
-      MuleMessage message = client.send(
+      client.send(
           "vm://hello?method=enhance",
           HelloClient.class.getSimpleName(),
           null);
-      println(message.getPayload());
       // asterisk
-      message = client.send(
+      client.send(
           "vm://hello?method=asterisk",
           HelloClient.class.getSimpleName(),
           null);
-      println(message.getPayload());
     } catch (MuleException e) {
       LOGGER.error(e.getMessage());
     } finally {
-      stopMuleServer(context);
+      if (context != null) {
+        stopMuleServer(context);
+      }
     }
   }
 
-  private static MuleContext startMuleServer() {
+  private static MuleContext startMuleServer(String config) {
     try {
       MuleContext context = new DefaultMuleContextFactory().createMuleContext(new SpringXmlConfigurationBuilder(
-          "org/ouobpo/ouvroir/mule/hello/hello-config.xml"));
+          config));
       context.start();
       return context;
     } catch (MuleException e) {
@@ -53,13 +54,11 @@ public class HelloClient {
   }
 
   private static void stopMuleServer(MuleContext context) {
-    if (context != null) {
-      try {
-        context.stop();
-      } catch (MuleException e) {
-        LOGGER.error(e.getMessage());
-      }
-      context.dispose();
+    try {
+      context.stop();
+    } catch (MuleException e) {
+      LOGGER.error(e.getMessage());
     }
+    context.dispose();
   }
 }
