@@ -15,11 +15,7 @@
   <name>Ouvroir Mule: Simple</name>
 
   <dependencies>
-    <dependency>
-      <groupId>org.mule</groupId>
-      <artifactId>mule-core</artifactId>
-    </dependency>
-    <!-- ***** mule modules ************************** -->
+    <!-- ***** mule modules **************************** -->
     <dependency>
       <groupId>org.mule.modules</groupId>
       <artifactId>mule-module-client</artifactId>
@@ -28,7 +24,7 @@
       <groupId>org.mule.modules</groupId>
       <artifactId>mule-module-spring-config</artifactId>
     </dependency>
-    <!-- ***** mule transports *********************** -->
+    <!-- ***** mule transports ************************* -->
     <dependency>
       <groupId>org.mule.transports</groupId>
       <artifactId>mule-transport-stdio</artifactId>
