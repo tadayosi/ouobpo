@@ -4,7 +4,7 @@
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <layout class="ch.qos.logback.classic.PatternLayout">
       <Pattern>
-        %-5p %d{yyyy-MM-dd HH:mm:ss} [%40.40(%C{30}.%M:%3L)] %m%n
+        %-5p %d{yyyy-MM-dd HH:mm:ss} [%50.50(%C{40}.%M:%3L)] %m%n
       </Pattern>
     </layout>
   </appender>
@@ -14,7 +14,19 @@
   </logger>
 
   <logger name="org.mule">
+    <level value="info" />
+  </logger>
+
+  <logger name="org.mule.transport.file">
+    <level value="debug" />
+  </logger>
+
+  <logger name="org.springframework">
     <level value="warn" />
+  </logger>
+
+  <logger name="org.springframework.jdbc.datasource">
+    <level value="info" />
   </logger>
 
   <root>
