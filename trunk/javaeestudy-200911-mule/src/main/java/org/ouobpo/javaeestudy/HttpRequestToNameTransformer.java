@@ -1,13 +1,14 @@
 package org.ouobpo.javaeestudy;
 
 import org.apache.commons.lang.StringUtils;
+import org.mule.transformer.AbstractTransformer;
 
-public class HelloService {
-  private static final String MESSAGE   = "こんにちは、%s";
+public class HttpRequestToNameTransformer extends AbstractTransformer {
   private static final String ANONYMOUS = "名無し";
 
-  public String say(String path) {
-    return String.format(MESSAGE, toName(path));
+  @Override
+  protected Object doTransform(Object src, String encoding) {
+    return toName(src.toString());
   }
 
   private static String toName(String path) {
