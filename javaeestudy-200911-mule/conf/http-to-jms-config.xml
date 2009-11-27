@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jms="http://www.mulesource.org/schema/mule/jms/2.2" xmlns:http="http://www.mulesource.org/schema/mule/http/2.2"
+  xmlns:stdio="http://www.mulesource.org/schema/mule/stdio/2.2"
+  xsi:schemaLocation="
+    http://www.mulesource.org/schema/mule/core/2.2
+    http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+    http://www.mulesource.org/schema/mule/http/2.2
+    http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+    http://www.mulesource.org/schema/mule/jms/2.2
+    http://www.mulesource.org/schema/mule/jms/2.2/mule-jms.xsd
+    http://www.mulesource.org/schema/mule/stdio/2.2
+    http://www.mulesource.org/schema/mule/stdio/2.2/mule-stdio.xsd
+  ">
+
+  <description>HTTP → JMS</description>
+
+  <jms:activemq-connector name="jmsConnector"
+    specification="1.1" />
+
+  <model name="HttpToJmsModel">
+    <service name="HttpToJmsService">
+
+      <inbound>
+        <http:inbound-endpoint address="http://localhost:8080/hello">
+          <message-properties-transformer>
+            <delete-message-property key="Accept-Charset" />
+            <delete-message-property key="Accept-Encoding" />
+            <delete-message-property key="Accept-Language" />
+            <delete-message-property key="Cache-Control" />
+            <delete-message-property key="Keep-Alive" />
+            <delete-message-property key="User-Agent" />
+            <delete-message-property key="http.context.path" />
+            <delete-message-property key="http.method" />
+            <delete-message-property key="http.request" />
+            <delete-message-property key="http.request.path" />
+            <delete-message-property key="http.version" />
+          </message-properties-transformer>
+          <custom-transformer
+            class="org.ouobpo.javaeestudy.HttpRequestToNameTransformer" />
+        </http:inbound-endpoint>
+      </inbound>
+
+      <outbound>
+        <pass-through-router>
+          <jms:outbound-endpoint queue="http-to-jms.out" />
+        </pass-through-router>
+      </outbound>
+
+    </service>
+  </model>
+
+  <!-- 結果検証用 -->
+  <model name="ResultCheckingModel">
+    <service name="ResultCheckingService">
+
+      <inbound>
+        <jms:inbound-endpoint queue="http-to-jms.out" />
+      </inbound>
+
+      <outbound>
+        <pass-through-router>
+          <stdio:outbound-endpoint system="OUT" />
+        </pass-through-router>
+      </outbound>
+
+    </service>
+  </model>
+
+</mule>
