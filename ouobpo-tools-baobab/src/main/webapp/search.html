@@ -1,0 +1,56 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:extends="/WEB-INF/layout/layout.html"
+	m:action="#{searchAction.initialize}">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="#{app.applicationTitle}" />
+<span m:inject="s:insert" m:name="body">
+
+<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"
+	      m:infoClass="info" m:errorClass="error"/>
+
+<table>
+	<tr>
+		<th>日付</th>
+		<th>書籍タイトル</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>値段</th>
+		<th>メモ</th>
+		<td></td>
+	</tr>
+	<span m:inject="s:forEach" m:items="#{searchAction.books}" m:var="book">
+		<form>
+			<tr>
+				<td width="50" align="center" class="data">
+					<span m:value="#{book.date}" m:converter="#{outputFullDateConv}">08/31</span>
+				</td>
+				<td width="350" class="data">
+					<span m:value="#{book.title}">アナリシスパターン</span>
+				</td>
+				<td width="150" class="data">
+					<span m:value="#{book.authors}">Martin Fowler</span>
+				</td>
+				<td width="100" class="data">
+					<span m:value="#{book.publisher}">アジソン・ウェスレイ</span>
+				</td>
+				<td width="50" align="right" class="data">
+					<span m:value="#{book.price}" m:converter="#{moneyConv}">12,345</span>
+				</td>
+				<td width="60" class="data">
+					<span m:value="#{book.note}">特になし</span>
+				</td>
+				<td>
+					<input type="hidden" name="id" m:value="#{book.id}" m:passthrough="true"/>
+					<input type="submit" value="修正" m:action="edit"/>
+				</td>
+			</tr>
+		</form>
+	</span>
+</table>
+
+</span>
+</body>
+</html>

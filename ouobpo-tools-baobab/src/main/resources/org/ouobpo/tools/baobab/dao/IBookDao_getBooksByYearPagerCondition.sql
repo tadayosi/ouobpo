@@ -1,0 +1,1 @@
+select * from book where year(date) = /*cond.year*/2006 order by date desc, title asc, authors asc;

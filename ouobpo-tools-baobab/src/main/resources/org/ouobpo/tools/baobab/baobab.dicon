@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="j2ee.dicon"/>
+	<include path="dao.dicon"/>
+	<!--
+		***********************************************************************
+		* core
+		***********************************************************************
+	-->
+	<component name="app"
+		class="org.ouobpo.tools.baobab.Application" />
+	<!--
+		***********************************************************************
+		* daos
+		***********************************************************************
+	-->
+	<component class="org.ouobpo.tools.baobab.dao.DBInitializerImpl">
+		<aspect>j2ee.requiredTx</aspect>
+	</component>
+	<component class="org.ouobpo.tools.baobab.dao.IBookDao">
+		<aspect>dao.interceptor</aspect>
+		<aspect>j2ee.requiredTx</aspect>
+	</component>
+	<component class="org.ouobpo.tools.baobab.dao.IMonthlyStatisticsDao">
+		<aspect>dao.interceptor</aspect>
+		<aspect>j2ee.requiredTx</aspect>
+	</component>
+	<component name="yearCondition"
+		class="org.ouobpo.tools.baobab.dao.YearPagerCondition" instance="session">
+		<property name="limit">10</property>
+		<property name="offset">0</property>
+	</component>
+	<component name="yearCondHelper"
+		class="org.seasar.dao.pager.PagerViewHelper" instance="session">
+		<arg>yearCondition</arg>
+		<arg>5</arg>
+	</component>
+	<!--
+		***********************************************************************
+		* actions (auto registration)
+		***********************************************************************
+	-->
+	<component
+		class="org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister">
+		<property name="instanceDef">
+			@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST
+		</property>
+		<initMethod name="addClassPattern">
+			<arg>"org.ouobpo.tools.baobab.web"</arg>
+			<arg>".*Action"</arg>
+		</initMethod>
+	</component>
+	<!--
+		***********************************************************************
+		* converters
+		***********************************************************************
+	-->
+	<component name="inputDateConv"
+		class="org.seasar.jsf.convert.S2DateTimeConverter">
+		<property name="pattern">"yyyyMMdd"</property>
+	</component>
+	<component name="outputDateConv"
+		class="org.seasar.jsf.convert.S2DateTimeConverter">
+		<property name="pattern">"MM/dd"</property>
+	</component>
+	<component name="outputFullDateConv"
+		class="org.seasar.jsf.convert.S2DateTimeConverter">
+		<property name="pattern">"yyyy/MM/dd"</property>
+	</component>
+	<component name="moneyConv"
+		class="javax.faces.convert.NumberConverter">
+		<property name="pattern">"#,###"</property>
+	</component>
+	<!--
+		***********************************************************************
+		* validators
+		***********************************************************************
+	-->
+</components>

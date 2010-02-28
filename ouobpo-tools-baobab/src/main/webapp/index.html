@@ -1,0 +1,103 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:extends="/WEB-INF/layout/layout.html"
+	m:action="#{listAction.initialize}">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="#{app.applicationTitle}" />
+<span m:inject="f:param" m:name="page" m:value="#{yearCondition.year}" />
+<span m:inject="s:insert" m:name="body">
+
+<!--
+	***********************************************************************************************
+	* 新規作成フォーム
+	***********************************************************************************************
+-->
+<form>
+	<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"
+	      m:infoClass="info" m:errorClass="error"/>
+	<input type="text" m:value="#{registerAction.date}"
+		m:label="日付" m:converter="#{inputDateConv}" size="10" />
+	<input type="text" m:value="#{registerAction.title}" size="40" />
+	<input type="text" m:value="#{registerAction.authors}" size="25" />
+	<input type="text" m:value="#{registerAction.publisher}" size="15" />
+	<input type="text" m:value="#{registerAction.price}"
+		m:label="値段"  size="10" />
+	<input type="text" m:value="#{registerAction.note}" size="40" />
+	<input type="submit" value="　登録　" m:action="#{registerAction.register}" />
+</form>
+
+<!--
+	***********************************************************************************************
+	* ページング
+	***********************************************************************************************
+-->
+<form>
+<ul class="paging" m:rendered="#{yearCondition.count > yearCondition.limit}">
+<li>
+	<a m:action="index" m:rendered="#{yearCondHelper.prev}">
+		&lt;&lt;<span m:inject="f:param" m:name="offset" m:value="#{yearCondition.offset - yearCondition.limit}"/></a>
+</li>
+<span m:inject="s:forEach" m:items="#{yearCondition.pages}" m:var="page">
+	<li>
+		<a m:action="index" m:rendered="#{(yearCondition.offset/yearCondition.limit) != (page-1)}">
+			<span m:value="#{page}">1</span><span m:inject="f:param" m:name="offset" m:value="#{yearCondition.limit*(page-1)}"/></a>
+		<span m:value="#{page}" m:rendered="#{(yearCondition.offset/yearCondition.limit) == (page - 1)}"/>
+	</li>
+</span>
+<li >
+	<a m:action="index" m:rendered="#{yearCondHelper.next}">
+		&gt;&gt;<span m:inject="f:param" m:name="offset" m:value="#{yearCondition.offset + yearCondition.limit}"/></a>
+</li>
+</ul>
+</form>
+
+<!--
+	***********************************************************************************************
+	* 一覧表示
+	***********************************************************************************************
+-->
+<table>
+	<tr>
+		<td></td>
+		<th>日付</th>
+		<th>書籍タイトル</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>値段</th>
+		<th>メモ</th>
+	</tr>
+	<span m:inject="s:forEach" m:items="#{listAction.books}" m:var="book">
+		<form>
+			<tr>
+				<td>
+					<input type="hidden" name="id" m:value="#{book.id}" m:passthrough="true"/>
+					<input type="submit" value="修正" m:action="edit"/>
+				</td>
+				<td width="50" align="center" class="data">
+					<span m:value="#{book.date}" m:converter="#{outputDateConv}">08/31</span>
+				</td>
+				<td width="350" class="data">
+					<span m:value="#{book.title}">アナリシスパターン</span>
+				</td>
+				<td width="150" class="data">
+					<span m:value="#{book.authors}">Martin Fowler</span>
+				</td>
+				<td width="100" class="data">
+					<span m:value="#{book.publisher}">アジソン・ウェスレイ</span>
+				</td>
+				<td width="50" align="right" class="data">
+					<span m:value="#{book.price}" m:converter="#{moneyConv}">12,345</span>
+				</td>
+				<td width="200" class="data">
+					<span m:value="#{book.note}">特になし</span>
+				</td>
+			</tr>
+		</form>
+	</span>
+</table>
+
+</span>
+</body>
+</html>
