@@ -1,0 +1,18 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:extends="/WEB-INF/layout/layout.html">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="#{app.applicationTitle}" />
+<span m:inject="s:insert" m:name="body">
+	■ CSV読込
+	<form enctype="multipart/form-data">
+		<span class="error" m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+		<span m:inject="x:inputFileUpload" m:value="#{csvUploadAction.file}" size="70"/>
+		<input type="submit" value="　読込　" m:action="#{csvUploadAction.load}">
+	</form>
+</span>
+
+</body>
+</html>

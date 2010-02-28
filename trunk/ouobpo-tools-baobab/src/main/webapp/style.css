@@ -1,0 +1,87 @@
+/******************************************************************************
+ * ID
+ ******************************************************************************/
+
+#header {
+	background-color: #ababcc;
+	border: 1px solid;
+	margin-top: 10px;
+	padding: 5px;
+	text-align: left;
+	font: large bold;
+}
+
+#menu {
+	background-color: #cdcdee;
+	border: 1px solid;
+	margin-top: 3px;
+	margin-bottom: 5px;
+	padding: 1px;
+	text-align: center;
+}
+
+#menu ul {
+	display: inline;
+	list-style-type: none;
+	margin: 0px;
+	text-align: center;
+}
+
+#menu li {
+	display: inline;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#footer {
+	border-top: 2px solid;
+	margin-top: 5px;
+	padding: 5px;
+	text-align: right;
+}
+
+/******************************************************************************
+ * class
+ ******************************************************************************/
+
+.info {
+	color: blue;
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+.data {
+	border-bottom: 1px solid;
+}
+
+.paging {
+	margin: 0px;
+}
+
+.paging li {
+	list-style-type: none;
+	display: inline;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+/******************************************************************************
+ * general
+ ******************************************************************************/
+
+table {
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 0px solid;
+}
+
+th {
+	background-color: #cdcdee;
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+}

@@ -1,0 +1,44 @@
+<html xmlns:m="http://www.seasar.org/maya"
+	m:extends="/WEB-INF/layout/layout.html"
+	m:action="#{statsMonthlyAction.initialize}">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<span m:inject="f:param" m:name="layoutTitle" m:value="#{app.applicationTitle}" />
+<span m:inject="s:insert" m:name="body">
+
+<span m:inject="s:forEach" m:items="#{statsMonthlyAction.tables}" m:var="table">
+<table width="140" style="display: inline">
+	<tr>
+		<th colspan="3">
+			<span m:value="#{table.year}"/>
+		</th>
+	</tr>
+	<tr>
+		<th width="40">月</th>
+		<th width="40">冊数</th>
+		<th width="60">金額</th>
+	</tr>
+	<span m:inject="s:forEach" m:items="#{table.statsList}" m:var="stats">
+		<tr>
+			<td class="data" align="right"><span m:value="#{stats.month}">1</span></td>
+			<td class="data" align="right"><span m:value="#{stats.number}">10</span></td>
+			<td class="data" align="right">
+				<span m:value="#{stats.price}" m:converter="#{moneyConv}">12,345</span>
+			</td>
+		</tr>
+	</span>
+	<tr style="font-weight: bold;">
+		<th>合計</th>
+		<td class="data" align="right"><span m:value="#{table.totalNumber}">10</span></td>
+		<td class="data" align="right">
+			<span m:value="#{table.totalPrice}" m:converter="#{moneyConv}">12,345</span>
+		</td>
+	</tr>
+</table>
+</span>
+
+</span>
+</body>
+</html>

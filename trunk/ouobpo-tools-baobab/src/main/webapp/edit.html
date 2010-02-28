@@ -1,0 +1,61 @@
+<html xmlns:m="http://www.seasar.org/maya"
+      m:action="#{editAction.initialize}">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link m:inject="s:link" rel="stylesheet" type="text/css" href="/style.css"/>
+	<title m:value="#{app.applicationTitle}"/>
+</head>
+<body>
+
+<h3>書籍情報編集</h3>
+
+<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+<table>
+	<tr>
+		<td></td>
+		<th>日付</th>
+		<th>書籍タイトル</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>値段</th>
+		<th>メモ</th>
+		<td></td>
+	</tr>
+	<tr>
+		<form>
+			<td>
+				<input type="button" value="削除" m:action="#{editAction.delete}"
+					onclick="return window.confirm('削除してもいいですか？');"/>
+			</td>
+		</form>
+		<form>
+			<td>
+				<input type="text" m:value="#{editAction.date}"
+					m:label="日付" m:converter="#{inputDateConv}" size="10" />
+			</td>
+			<td>
+				<input type="text" m:value="#{editAction.title}" size="40" />
+			</td>
+			<td>
+				<input type="text" m:value="#{editAction.authors}" size="25" />
+			</td>
+			<td>
+				<input type="text" m:value="#{editAction.publisher}" size="15" />
+			</td>
+			<td>
+				<input type="text" m:value="#{editAction.price}"
+					m:label="値段"  size="10" />
+			</td>
+			<td>
+				<input type="text" m:value="#{editAction.note}" size="20" />
+			</td>
+			<td>
+				<input type="hidden" m:value="#{editAction.id}"/>
+				<input type="submit" value="更新" m:action="#{editAction.update}"/>
+			</td>
+		</form>
+	</tr>
+</table>
+
+</body>
+</html>

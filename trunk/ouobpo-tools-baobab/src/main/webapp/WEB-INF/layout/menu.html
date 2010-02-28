@@ -1,0 +1,45 @@
+<html xmlns:m="http://www.seasar.org/maya">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<span m:inject="s:insert">
+<form>
+	<ul>
+		<li>
+			【 蔵書数: <span m:value="#{yearCondition.count}">100</span>
+			/ <span m:value="#{listAction.count}">100</span> 冊 】
+		</li>
+		<span m:inject="s:forEach" m:items="#{listAction.years}" m:var="year">
+			<li>
+				<a m:action="index" m:rendered="#{year != page}">
+					<span m:value="#{year}">2006</span><span m:inject="f:param" m:name="year" m:value="#{year}"/></a>
+				<span m:value="#{year}" m:rendered="#{year == page}"/>
+			</li>
+		</span>
+<script type="text/javascript">
+<!-- 
+	function goToCommandPage(page) {
+		if (page == "") {
+			page = "index"
+		}
+		location.href = "/" + page + ".html";
+	}
+//-->
+</script>
+		<select m:name="pageType" onChange="goToCommandPage(this.value)">
+			<option value="">▼コマンド　　　</option>
+			<option value="statsMonthly">月別統計</option>
+			<option value="csvUpload">CSV読込</option>
+		</select>
+	</ul>
+	<ul>
+		<li>
+			<input type="text" m:value="#{searchAction.word}" size="30" />
+			<input type="submit" value="検索" m:action="search"/>
+		</li>
+	</ul>
+</form>
+</span>
+</body>
+</html>
