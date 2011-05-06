@@ -49,6 +49,24 @@
       <groupId>net.sf.jxls</groupId>
       <artifactId>jxls-reader</artifactId>
       <version>1.0-RC-2</version>
+      <exclusions>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- ***** logging ***** -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>0.9.28</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.6.1</version>
     </dependency>
 
     <!-- ***** test ***** -->
