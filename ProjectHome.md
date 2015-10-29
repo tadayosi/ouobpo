@@ -1,0 +1,1 @@
+A project which provides useful Java applications, libraries, frameworks and code samples. Ouobpo stands for _Ouvroir de Objet Potentielle_, or a workshop of potential objects.
